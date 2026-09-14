@@ -162,7 +162,9 @@ Vai abrir uma página de configuração como essa:
 </html>
 ```
 
-3) Abra o seu navegador e verifique se a página abriu, caso não tenha aberto, abra o link:
+3) Rode a aplicação
+
+4) Abra o seu navegador e verifique se a página abriu, caso não tenha aberto, abra o link:
 ```http
 http://localhost:8080/
 ```
