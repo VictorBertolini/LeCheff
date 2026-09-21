@@ -20,7 +20,7 @@ Baixe o `x64 Installer`
 
 [JDK 21 - Windows](https://www.oracle.com/br/java/technologies/downloads/#jdk21-windows)
 
-![JDK 21 Windows](img/jdk-21-windows.png)
+![JDK 21 Windows](docs/img/jdk-21-windows.png)
 
 
 
@@ -86,7 +86,7 @@ Se aparecer "It works !", logo o tomcat está preparado e rodando. Caso a aba n�
 4) Clique em no seu projeto atual
 5) Clique em `+` (Add)
 
-![Project Structure 01](img/project_structure_01.png)
+![Project Structure 01](docs/img/project_structure_01.png)
 
 6) Clique em `Web`
 7) Clique em `Apply` e `Ok`
@@ -101,13 +101,13 @@ Se aparecer "It works !", logo o tomcat está preparado e rodando. Caso a aba n�
 5) Clique em `Web Application: Exploded`
 6) Clique em `From Modules`
 
-![Project Structure 02](img/project_structure_02.png)
+![Project Structure 02](docs/img/project_structure_02.png)
 
 7) Clique na sua aplicação e `Ok`
 
 Deve aparecer uma tela igual a essa:
 
-![Project Structure 03](img/project_structure_03.png)
+![Project Structure 03](docs/img/project_structure_03.png)
 
 8) Clique em `Apply` e `Ok`
 
@@ -116,22 +116,22 @@ Deve aparecer uma tela igual a essa:
 1) Clique em `Current File` no canto superior direito 
 2) Clique em `Edit Configurations`
 
-![Current File](img/current_file.png)
+![Current File](docs/img/current_file.png)
 
 3) Clique em `+` -> `Tomcat Server` -> `Local`
 
-![Tomcat Config 01](img/tomcat_config_01.png)
+![Tomcat Config 01](docs/img/tomcat_config_01.png)
 
 
 Vai abrir uma página de configuração como essa:
 
-![Tomcat Config 02](img/tomcat_config_02.png)
+![Tomcat Config 02](docs/img/tomcat_config_02.png)
 
 4) Se em `Application server` não tiver encontrado nenhum tomcat, clique em `Configure` e ache a pasta que está o tomcat 
 
 5) Clique em `Deployment` 
 
-![Tomcat Config 03](img/tomcat_config_03.png)
+![Tomcat Config 03](docs/img/tomcat_config_03.png)
 
 6) Selecione o seu projeto
 
@@ -144,7 +144,7 @@ Vai abrir uma página de configuração como essa:
 
 1) Vá até a pasta `web` e crie um `index.html`
 
-![Html](img/index.png)
+![Html](docs/img/index.png)
 
 2) Cole o seguinte código:
 
