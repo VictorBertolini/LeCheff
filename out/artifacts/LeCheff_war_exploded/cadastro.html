@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro Cliente- LeChef</title>
+</head>
+<body>
+<form style="background-color: darkgrey; border: 2px solid black">
+    <label for="user">Nome:</label>
+    <input type="text" name="usuario" id="user" placeholder="Informe o nome" required>
+    <br>
+    <label for="data_nascimento">Data de Nascimento:</label>
+    <input type="date" name="data_nascimento" id="data_nascimento" placeholder="Informe o data de nascimento">
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" placeholder="Informe o email" required>
+    <br>
+    <label for="senha">Senha:</label>
+    <input type="password" name="senha" id="senha" placeholder="Informe a senha" required>
+    <br>
+    <label for="telefone">Telefone</label>
+    <input type="tel" name="telefone" id="telefone" placeholder="Informe o telefone">
+    <br>
+    <label for="quantidade_pessoas">Quantidade de Pessoas</label>
+    <select name="quantidade_pessoas" id="quantidade_pessoas">
+        <option value="">Selecione</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+    </select>
+    <br>
+    <input type="checkbox" name="termos" id="termos" value="aceito" required>
+    <label for="termos">Aceito os termos de uso da Empresa</label>
+    <br>
+    <input type="submit" value="Enviar">
+    <input type="reset" value="Limpar">
+</form>
+</body>
+</html>
