@@ -64,9 +64,47 @@
 
     <iframe width="640" height="480" src="https://www.youtube.com/embed/ZTQI3j6Ixug?autoplay=1"></iframe>
 
+
+    <!-- INTEGRANTES -->
+    <section>
+        <h2>Integrantes</h2>
+        <label for="matricula">Número de matrícula:</label>
+
+        <input type="text"
+               id="matricula"
+               placeholder="Digite a matrícula">
+
+        <input type="button"
+               value="Buscar"
+               onclick="buscarFoto(); buscarVaga();">
+
+        <p id="mensagem"></p>
+
+        <!-- Só aparece quando a matrícula for encontrada -->
+        <div id="resultado" style="display:none">
+            <h3 id="nomeIntegrante"></h3>
+
+            <img id="foto"
+                 src=""
+                 alt="Foto do integrante"
+                 width="200"
+                 style="display: none;">
+
+            <h4 id="nomeVaga"></h4>
+            <p id="descricaoVaga"></p>
+        </div>
+    </section>
+
+
     <!-- FOOTER -->
     <footer>
         <p>© 2026 - Todos direitos reservados.</p>
     </footer>
+
+    <!-- CHAMADA JAVASCRIPT -->
+    <script src="integrante.js"></script>
+    <script src="restricao.js"></script>
+
+
 </body>
 </html>
