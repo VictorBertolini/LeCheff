@@ -28,7 +28,7 @@ function buscarFoto() {
             caminho = "imagens/Iury.png";
             break;
 
-        case "12311BCC004": // ainda não está concluido
+        case "12421BSI382":
             caminho = "imagens/Joaquim.png";
             break;
 

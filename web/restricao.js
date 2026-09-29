@@ -19,10 +19,10 @@ var alunos = [
         descricao: "Constrói e mantém a lógica interna, as APIs e os bancos de dados que fazem um sistema funcionar de forma rápida, segura e escalável por trás da interface."
     },
     {
-        matricula: "12311BCC004", // Falta fazer ainda
+        matricula: "12421BSI382",
         nome: "Joaquim",
-        vaga: "Engenheiro de Software",
-        descricao: "Projeta, desenvolve, testa e mantém sistemas de software, definindo arquitetura, escrevendo código de qualidade e acompanhando o ciclo de vida completo das aplicações."
+        vaga: "Desenvolvedor FullStack",
+        descricao: "Transforma o design e a regra de negócio da aplicação em código de forma intuitiva, escalável e segura"
     },
     {
         matricula: "12421BCC051",
