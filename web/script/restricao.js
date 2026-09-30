@@ -33,7 +33,7 @@ var alunos = [
     {
         matricula: "12411BCC028",
         nome: "Lauro",
-        vaga: "Engenheiro de Software",
+        vaga: "Front-End",
         descricao: "Transformar o design visual do projeto em uma interface digital funcional utilizando HTML, CSS e JavaScript."
     },
     {
