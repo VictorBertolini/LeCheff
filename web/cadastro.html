@@ -5,33 +5,38 @@
     <title>Cadastro Cliente- Le Chef</title>
 </head>
 <body>
-<form style="background-color: darkgrey; border: 2px solid black">
+<h1>Cadastro do Cliente</h1>
+<form id="formCadastro" style="background-color: darkgrey; border: 2px solid black">
     <label for="user">Nome:</label>
     <input type="text" name="usuario" id="user" placeholder="Informe o nome" required>
     <br>
     <label for="data_nascimento">Data de Nascimento:</label>
-    <input type="date" name="data_nascimento" id="data_nascimento" placeholder="Informe o data de nascimento">
+    <input type="text" name="data_nascimento" id="data_nascimento" placeholder="Informe a data de nascimento" required>
     <br>
     <label for="email">Email:</label>
-    <input type="email" name="email" id="email" placeholder="Informe o email" required>
+    <input type="text" name="email" id="email" placeholder="Informe o email" required>
     <br>
     <label for="senha">Senha:</label>
-    <input type="password" name="senha" id="senha" placeholder="Informe a senha" required>
+    <input type="text" name="senha" id="senha" placeholder="Informe a senha" required>
     <br>
     <label for="telefone">Telefone</label>
-    <input type="tel" name="telefone" id="telefone" placeholder="Informe o telefone">
+    <input type="text" name="telefone" id="telefone" placeholder="Informe o telefone" required>
     <br>
-    <label for="tipo_cliente">Tipo:</label>
-    <select name="tipo_cliente" id="tipo_cliente">
-        <option value="fisica">Pessoa Física</option>
-        <option value="juridica">Pessoa Jurídica</option>
+    <label for="integrante">Integrante responsável:</label>
+    <select name="integrante" id="integrante" required>
+        <option value="">Selecione um integrante</option>
+        <option value="imagens/Amanda.png">Amanda Gomes</option>
+        <option value="imagens/Bianca.png">Bianca Ribeiro</option>
+        <option value="imagens/Iury.png">Iury Hattori</option>
+        <option value="imagens/Joaquim.png">Joaquim Ferreira</option>
+        <option value="imagens/Kaike.png">Kaike de Morais</option>
+        <option value="imagens/Lauro.png">Lauro Peres</option>
+        <option value="imagens/Victor.png">Victor Bertolini</option>
     </select>
     <br>
-    <input type="checkbox" name="termos" id="termos" value="aceito" required>
-    <label for="termos">Aceito os termos de uso da Empresa</label>
-    <br>
-    <input type="submit" value="Enviar">
-    <input type="reset" value="Limpar">
+    <input type="button" id="botaoCadastro" value="Cadastrar">
+    <div id="relatorio"></div>
 </form>
+<script src="script/cadastro.js"></script>
 </body>
 </html>
