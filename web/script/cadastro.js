@@ -3,10 +3,6 @@ var primeiroCampo = document.getElementById("user");
 var seletorIntegrante = document.getElementById("integrante");
 var relatorio = document.getElementById("relatorio");
 
-primeiroCampo.addEventListener("focus", function () {
-    primeiroCampo.style.backgroundColor = "lightyellow";
-});
-
 document.getElementById("botaoCadastro").addEventListener("click", function () {
     if (!formCadastro.reportValidity()) {
         return;
