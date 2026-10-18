@@ -13,15 +13,13 @@ public class SiteChefApp {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
             System.out.println("Conexão com o banco de dados estabelecida com sucesso!\n");
 
-            // ==========================================
-            // 1. CADASTRAR (CREATE)
-            // ==========================================
+            // CADASTRAR
             System.out.println("--- INSERINDO DADOS ---");
 
             // Cadastrar Cheff
             String insertCheff = "INSERT INTO Cheff (email, senha) VALUES (?, ?)";
             try (PreparedStatement stmt = conn.prepareStatement(insertCheff)) {
-                stmt.setString(1, "chef2.master@sitechef.com");
+                stmt.setString(1, "chef.master@sitechef.com");
                 stmt.setString(2, "senhaSecreta123");
                 stmt.executeUpdate();
             }
@@ -35,13 +33,13 @@ public class SiteChefApp {
                 stmt.executeUpdate();
             }
 
-            // Cadastrar Cliente (Recuperando o ID gerado para usar no Endereço)
+            // Cadastrar Cliente
             int clienteId = -1;
             String insertCliente = "INSERT INTO Cliente (nome, idade, email, senha, telefone) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement stmt = conn.prepareStatement(insertCliente, Statement.RETURN_GENERATED_KEYS)) {
                 stmt.setString(1, "João Silva");
                 stmt.setInt(2, 30);
-                stmt.setString(3, "joao2.silva@email.com");
+                stmt.setString(3, "joao.silva@email.com");
                 stmt.setString(4, "senha123");
                 stmt.setString(5, "34999999999");
                 stmt.executeUpdate();
@@ -69,10 +67,8 @@ public class SiteChefApp {
             }
             System.out.println("Dados cadastrados com sucesso!\n");
 
-            // ==========================================
-            // 2. CONSULTAR (READ)
-            // ==========================================
-            System.out.println("--- CONSULTANDO DADOS ---");
+            //CONSULTAR
+            System.out.println("--- CONSULTANDO CLIENTES ---");
 
             // Consultar Clientes e seus Endereços (Usando JOIN)
             String selectCliente = "SELECT c.nome, c.email, e.rua, e.numero, e.cidade FROM Cliente c JOIN Endereco e ON c.id = e.cliente_id";
@@ -83,6 +79,7 @@ public class SiteChefApp {
                 }
             }
 
+            System.out.println("--- CONSULTANDO PRATOS ---");
             // Consultar Pratos
             String selectPrato = "SELECT id, nome, categoria FROM Prato";
             try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(selectPrato)) {
@@ -129,6 +126,13 @@ public class SiteChefApp {
                 stmt.setString(1, "joao.silva@email.com");
                 int rows = stmt.executeUpdate();
                 System.out.println(rows + " cliente(s) removido(s).");
+            }
+
+            String deletePrato = "DELETE FROM Prato WHERE nome = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(deletePrato)) {
+                stmt.setString(1, "Risoto de Funghi");
+                int rows = stmt.executeUpdate();
+                System.out.println(rows + " prato(s) removido(s).");
             }
 
         } catch (SQLException e) {
