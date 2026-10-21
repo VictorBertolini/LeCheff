@@ -1,4 +1,4 @@
-package com.lecheff;
+package com.lecheff.models;
 
 public class Prato {
 

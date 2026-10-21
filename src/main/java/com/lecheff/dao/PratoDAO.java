@@ -1,4 +1,6 @@
-package com.lecheff;
+package com.lecheff.dao;
+
+import com.lecheff.models.Prato;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +13,7 @@ public class PratoDAO {
     // Configurações do Banco de Dados
     private static final String URL = "jdbc:mysql://localhost:3306/le_cheff";
     private static final String USER = "root";
-    private static final String PASSWORD = "admin";
+    private static final String PASSWORD = "Batman@228626";
 
     // Carrega o driver do MySQL (no Tomcat ele não é registrado sozinho)
     static {

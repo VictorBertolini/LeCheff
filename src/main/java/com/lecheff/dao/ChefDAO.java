@@ -1,4 +1,6 @@
-package com.lecheff;
+package com.lecheff.dao;
+
+import com.lecheff.models.Chef;
 
 import java.sql.*;
 

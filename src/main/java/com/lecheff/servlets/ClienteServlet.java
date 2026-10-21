@@ -1,6 +1,7 @@
-package com.lecheff;
+package com.lecheff.servlets;
 
-import jakarta.servlet.ServletConfig;
+import com.lecheff.dao.ClienteDAO;
+import com.lecheff.models.Cliente;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

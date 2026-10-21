@@ -1,5 +1,7 @@
-package com.lecheff;
+package com.lecheff.servlets;
 
+import com.lecheff.dao.ChefDAO;
+import com.lecheff.models.Chef;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
