@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Tela de Pratos - Le Chef</title>
+</head>
+<body>
+<h1>Tela de Pratos - Le Chef</h1>
+<h2>Cadastro de Pratos</h2> 
+<form id="cadastroPrato" action="pratos" method="post" style="background-color: darkgrey; border: 2px solid black">
+    <label for="nomePrato">Nome:</label>
+    <input type="text" name="nomePrato" id="nomePrato" placeholder="Informe o nome" required autofocus>
+    <br>
+    <label for="descricaoPrato">Descrição:</label>
+    <input type="text" name="descricaoPrato" id="descricaoPrato" placeholder="Descreva o prato" required>
+    <br>
+    <label for="categoriaPrato">Selecione a categoria:</label>
+    <select id="categoriaPrato" name="categoriaPrato">
+        <option value="entrada">Entrada</option>
+        <option value="principal">Prato Principal</option>
+        <option value="sobremesa">Sobremesa</option>
+    </select>
+    <br>
+    <button type="submit">Cadastrar Prato</button>
+</form>
+
+<h2>Consulta de Pratos</h2>
+<form id="consultaPrato" action="pratos" method="get" style="background-color: darkgrey; border: 2px solid black">
+    <label for="consultaId">Id:</label>
+    <input type="number" name="id" id="consultaId" placeholder="Informe o id" required>
+    <br>
+    <button type="submit">Consultar Prato</button>
+</form>
+
+<h2>Alteração de Pratos</h2>
+<form id="alteraPrato" action="pratos" onsubmit="enviar('PUT', this); return false;" style="background-color: darkgrey; border: 2px solid black">
+    <label for="alteraId">Id:</label>
+    <input type="number" name="id" id="alteraId" placeholder="Informe o id" required>
+    <br>
+    <label for="alteraNomePrato">Nome:</label>
+    <input type="text" name="nomePrato" id="alteraNomePrato" placeholder="Informe o nome" required>
+    <br>
+    <label for="alteraDescricaoPrato">Descrição:</label>
+    <input type="text" name="descricaoPrato" id="alteraDescricaoPrato" placeholder="Descreva o prato" required>
+    <br>
+    <label for="alteraCategoriaPrato">Selecione a categoria:</label>
+    <select id="alteraCategoriaPrato" name="categoriaPrato">
+        <option value="entrada">Entrada</option>
+        <option value="principal">Prato Principal</option>
+        <option value="sobremesa">Sobremesa</option>
+    </select>
+    <br>
+    <button type="submit">Alterar Prato</button>
+</form>
+
+<h2>Remoção de Pratos</h2>
+<form id="removePrato" action="pratos" onsubmit="enviar('DELETE', this); return false;" style="background-color: darkgrey; border: 2px solid black">
+    <label for="removeId">Id:</label>
+    <input type="number" name="id" id="removeId" placeholder="Informe o id" required>
+    <br>
+    <button type="submit">Remover Prato</button>
+</form>
+
+<script>
+    // Forms HTML só enviam GET e POST, então PUT e DELETE são enviados com fetch
+    function enviar(metodo, form) {
+        const params = new URLSearchParams(new FormData(form));
+        fetch(form.action + '?' + params, {method: metodo})
+            .then(resposta => resposta.text())
+            .then(html => {
+                document.open();
+                document.write(html);
+                document.close();
+            });
+    }
+</script>
+</body>
+</html>
