@@ -13,7 +13,7 @@
 | idade    | inteiro | opcional           | 
 | email    | String  | obrigatório, único |
 | senha    | String  | obrigatório        | 
-| telegone | String  | obrigatório        |
+| telefone | String  | obrigatório        |
 
 ## Endereco
 | Campo       | Tipo    | Observação            |
