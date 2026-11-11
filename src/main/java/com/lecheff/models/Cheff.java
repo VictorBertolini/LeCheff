@@ -1,11 +1,11 @@
 package com.lecheff.models;
 
-public class Chef {
+public class Cheff {
 
     private String email;
     private String senha;
 
-    public Chef(String email, String senha) {
+    public Cheff(String email, String senha) {
         this.email = email;
         this.senha = senha;
     }

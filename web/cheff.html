@@ -2,46 +2,46 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Tela do Chef - Le Chef</title>
+    <title>Tela do Cheff - Le Cheff</title>
 </head>
 <body>
-<h1>Tela do Chef - Le Chef</h1>
-<h2>Cadastro do Chef</h2>
-<form id="cadastroChef" action="chefs" method="post" style="background-color: darkgrey; border: 2px solid black">
+<h1>Tela do Cheff - Le Cheff</h1>
+<h2>Cadastro do Cheff</h2>
+<form id="cadastroCheff" action="cheffs" method="post" style="background-color: darkgrey; border: 2px solid black">
     <label for="email">Email:</label>
     <input type="text" name="email" id="email" placeholder="Informe o email" required>
     <br>
     <label for="senha">Senha:</label>
     <input type="text" name="senha" id="senha" placeholder="Informe a senha" required>
     <br>
-    <button type="submit">Cadastrar Chef</button>
+    <button type="submit">Cadastrar Cheff</button>
 </form>
 
-<h2>Consulta do Chef</h2>
-<form id="consultaChef" action="chefs" method="get" style="background-color: darkgrey; border: 2px solid black">
+<h2>Consulta do Cheff</h2>
+<form id="consultaCheff" action="cheffs" method="get" style="background-color: darkgrey; border: 2px solid black">
     <label for="consultaEmail">Email:</label>
     <input type="text" name="email" id="consultaEmail" placeholder="Informe o email" required>
     <br>
-    <button type="submit">Consultar Chef</button>
+    <button type="submit">Consultar Cheff</button>
 </form>
 
-<h2>Alteração do Chef</h2>
-<form id="alteraChef" action="chefs" onsubmit="enviar('PUT', this); return false;" style="background-color: darkgrey; border: 2px solid black">
+<h2>Alteração do Cheff</h2>
+<form id="alteraCheff" action="cheffs" onsubmit="enviar('PUT', this); return false;" style="background-color: darkgrey; border: 2px solid black">
     <label for="alteraEmail">Email:</label>
     <input type="text" name="email" id="alteraEmail" placeholder="Informe o email" required>
     <br>
     <label for="alteraSenha">Nova senha:</label>
     <input type="text" name="senha" id="alteraSenha" placeholder="Informe a nova senha" required>
     <br>
-    <button type="submit">Alterar Chef</button>
+    <button type="submit">Alterar Cheff</button>
 </form>
 
-<h2>Remoção do Chef</h2>
-<form id="removeChef" action="chefs" onsubmit="enviar('DELETE', this); return false;" style="background-color: darkgrey; border: 2px solid black">
+<h2>Remoção do Cheff</h2>
+<form id="removeCheff" action="cheffs" onsubmit="enviar('DELETE', this); return false;" style="background-color: darkgrey; border: 2px solid black">
     <label for="removeEmail">Email:</label>
     <input type="text" name="email" id="removeEmail" placeholder="Informe o email" required>
     <br>
-    <button type="submit">Remover Chef</button>
+    <button type="submit">Remover Cheff</button>
 </form>
 
 <script>

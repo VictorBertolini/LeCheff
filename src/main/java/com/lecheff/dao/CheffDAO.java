@@ -1,10 +1,10 @@
 package com.lecheff.dao;
 
-import com.lecheff.models.Chef;
+import com.lecheff.models.Cheff;
 
 import java.sql.*;
 
-public class ChefDAO {
+public class CheffDAO {
 
     // Configurações do Banco de Dados
     private static final String URL = "jdbc:mysql://localhost:3306/le_cheff";
@@ -20,7 +20,7 @@ public class ChefDAO {
         }
     }
 
-    public boolean inserirChef(Chef chef){
+    public boolean inserirChef(Cheff cheff){
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
             System.out.println("Conexão com o banco de dados estabelecida com sucesso!\n");
 
@@ -30,8 +30,8 @@ public class ChefDAO {
             // Cadastrar Cheff
             String insertCheff = "INSERT INTO Cheff (email, senha) VALUES (?, ?)";
             try (PreparedStatement stmt = conn.prepareStatement(insertCheff)) {
-                stmt.setString(1, chef.getEmail());
-                stmt.setString(2, chef.getSenha());
+                stmt.setString(1, cheff.getEmail());
+                stmt.setString(2, cheff.getSenha());
                 stmt.execute();
             }
 
@@ -45,7 +45,7 @@ public class ChefDAO {
         }
     }
 
-    public boolean atualizarChef(Chef chef){
+    public boolean atualizarChef(Cheff cheff){
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
 
             // ALTERAR (o email é a chave, então só a senha muda)
@@ -53,8 +53,8 @@ public class ChefDAO {
 
             String updateCheff = "UPDATE Cheff SET senha = ? WHERE email = ?";
             try (PreparedStatement stmt = conn.prepareStatement(updateCheff)) {
-                stmt.setString(1, chef.getSenha());
-                stmt.setString(2, chef.getEmail());
+                stmt.setString(1, cheff.getSenha());
+                stmt.setString(2, cheff.getEmail());
 
                 int linhas = stmt.executeUpdate();
                 if(linhas > 0){return true;}
@@ -68,7 +68,7 @@ public class ChefDAO {
         }
     }
 
-    public Chef buscarChef(String email){
+    public Cheff buscarChef(String email){
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
 
             // CONSULTAR
@@ -80,7 +80,7 @@ public class ChefDAO {
 
                 ResultSet rs = stmt.executeQuery();
                 if (rs.next()) {
-                    return new Chef(rs.getString("email"), rs.getString("senha"));
+                    return new Cheff(rs.getString("email"), rs.getString("senha"));
                 }
             }
 

@@ -1,7 +1,7 @@
 package com.lecheff.servlets;
 
-import com.lecheff.dao.ChefDAO;
-import com.lecheff.models.Chef;
+import com.lecheff.dao.CheffDAO;
+import com.lecheff.models.Cheff;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,15 +12,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet("/chefs")
-public class ChefServlet extends HttpServlet {
+public class CheffServlet extends HttpServlet {
 
-    private ChefDAO chefDAO;
+    private CheffDAO cheffDAO;
 
     // CICLO DE VIDA 1 - init(): roda uma única vez, quando o Tomcat cria o servlet
     @Override
     public void init() throws ServletException {
         super.init();
-        chefDAO = new ChefDAO();
+        cheffDAO = new CheffDAO();
         System.out.println("ChefServlet: init() - servlet iniciado");
     }
 
@@ -39,10 +39,10 @@ public class ChefServlet extends HttpServlet {
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
 
-        Chef chef = new Chef(email, senha);
+        Cheff cheff = new Cheff(email, senha);
 
         String mensagem;
-        if(chefDAO.inserirChef(chef)){mensagem = "Chef Cadastrado!";}
+        if(cheffDAO.inserirChef(cheff)){mensagem = "Chef Cadastrado!";}
         else{mensagem = "Erro ao cadastrar o chef.";}
 
         String html =
@@ -53,7 +53,7 @@ public class ChefServlet extends HttpServlet {
                         "</head>\n" +
                         "<body>\n" +
                         "  <h1>" + mensagem + "</h1>\n" +
-                        "  <a href=\"chef.html\">Voltar</a>\n" +
+                        "  <a href=\"cheff.html\">Voltar</a>\n" +
                         "</body>\n" +
                         "</html>";
 
@@ -69,13 +69,13 @@ public class ChefServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
 
-        Chef chef = chefDAO.buscarChef(email);
+        Cheff cheff = cheffDAO.buscarChef(email);
 
         String corpo;
-        if (chef != null) {
+        if (cheff != null) {
             corpo = "  <h1>Chef encontrado</h1>\n" +
-                    "  <p>Email: " + chef.getEmail() + "</p>\n" +
-                    "  <p>Senha: " + chef.getSenha() + "</p>\n";
+                    "  <p>Email: " + cheff.getEmail() + "</p>\n" +
+                    "  <p>Senha: " + cheff.getSenha() + "</p>\n";
         } else {
             corpo = "  <h1>Chef não encontrado.</h1>\n";
         }
@@ -88,7 +88,7 @@ public class ChefServlet extends HttpServlet {
                         "</head>\n" +
                         "<body>\n" +
                         corpo +
-                        "  <a href=\"chef.html\">Voltar</a>\n" +
+                        "  <a href=\"cheff.html\">Voltar</a>\n" +
                         "</body>\n" +
                         "</html>";
 
@@ -104,10 +104,10 @@ public class ChefServlet extends HttpServlet {
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
 
-        Chef chef = new Chef(email, senha);
+        Cheff cheff = new Cheff(email, senha);
 
         String mensagem;
-        if(chefDAO.atualizarChef(chef)){mensagem = "Chef Alterado!";}
+        if(cheffDAO.atualizarChef(cheff)){mensagem = "Chef Alterado!";}
         else{mensagem = "Chef não encontrado.";}
 
         String html =
@@ -118,7 +118,7 @@ public class ChefServlet extends HttpServlet {
                         "</head>\n" +
                         "<body>\n" +
                         "  <h1>" + mensagem + "</h1>\n" +
-                        "  <a href=\"chef.html\">Voltar</a>\n" +
+                        "  <a href=\"cheff.html\">Voltar</a>\n" +
                         "</body>\n" +
                         "</html>";
 
@@ -134,7 +134,7 @@ public class ChefServlet extends HttpServlet {
         String email = req.getParameter("email");
 
         String mensagem;
-        if(chefDAO.removerChef(email)){mensagem = "Chef Removido!";}
+        if(cheffDAO.removerChef(email)){mensagem = "Chef Removido!";}
         else{mensagem = "Chef não encontrado.";}
 
         String html =
@@ -145,7 +145,7 @@ public class ChefServlet extends HttpServlet {
                         "</head>\n" +
                         "<body>\n" +
                         "  <h1>" + mensagem + "</h1>\n" +
-                        "  <a href=\"chef.html\">Voltar</a>\n" +
+                        "  <a href=\"cheff.html\">Voltar</a>\n" +
                         "</body>\n" +
                         "</html>";
 
@@ -158,7 +158,7 @@ public class ChefServlet extends HttpServlet {
     // CICLO DE VIDA 3 - destroy(): roda uma única vez, quando o Tomcat desliga ou recarrega a aplicação
     @Override
     public void destroy() {
-        chefDAO = null;
+        cheffDAO = null;
         System.out.println("ChefServlet: destroy() - servlet finalizado");
         super.destroy();
     }
