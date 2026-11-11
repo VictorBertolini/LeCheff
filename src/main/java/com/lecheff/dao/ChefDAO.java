@@ -113,12 +113,4 @@ public class ChefDAO {
             return false;
         }
     }
-
-
-
-    public static void main(String[] args) {
-
-    }
-
-
 }
