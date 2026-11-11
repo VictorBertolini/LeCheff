@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Tela de Clientes - Le Chef</title>
+</head>
+<body>
+<h1>Tela de Clientes - Le Chef</h1>
+<h2>Cadastro de Clientes</h2>
+<form id="cadastroCliente" action="clientes" method="post" style="background-color: darkgrey; border: 2px solid black">
+    <label for="user">Nome:</label>
+    <input type="text" name="nome" id="nome" placeholder="Informe o nome" required autofocus>
+    <br>
+    <label for="idade">Idade:</label>
+    <input type="number" name="idade" id="idade" placeholder="Informe a sua idade" required>
+    <br>
+    <label for="email">Email:</label>
+    <input type="text" name="email" id="email" placeholder="Informe o email" required>
+    <br>
+    <label for="senha">Senha:</label>
+    <input type="password" name="senha" id="senha" placeholder="Informe a senha" required>
+    <br>
+    <label for="telefone">Telefone</label>
+    <input type="text" name="telefone" id="telefone" placeholder="Informe o telefone" required>
+    <br>
+    <label for="cidade">Cidade</label>
+    <input type="text" name="cidade" id="cidade" placeholder="Informe a cidade" required>
+    <br>
+    <label for="cep">Cep</label>
+    <input type="text" name="cep" id="cep" placeholder="Informe o cep" required>
+    <br>
+    <label for="rua">Rua</label>
+    <input type="text" name="rua" id="rua" placeholder="Informe a rua" required>
+    <br>
+    <label for="numero">Número</label>
+    <input type="text" name="numero" id="numero" placeholder="Informe o número" required>
+    <br>
+    <label for="bairro">Bairro</label>
+    <input type="text" name="bairro" id="bairro" placeholder="Informe o bairo" required>
+    <br>
+    <label for="estado">Estado</label>
+    <input type="text" name="estado" id="estado" placeholder="Informe o estado" required>
+    <br>
+    <label for="complemento">Complemento</label>
+    <input type="text" name="complemento" id="complemento" placeholder="Informe o complemento do endereço" required>
+    <br>
+    <button type="submit">Cadastrar Cliente</button>
+</form>
+
+<h2>Consulta de Clientes</h2>
+<form id="consultaCliente" action="clientes" method="get" style="background-color: darkgrey; border: 2px solid black">
+    <label for="consultaId">Id:</label>
+    <input type="number" name="id" id="consultaId" placeholder="Informe o id" required>
+    <br>
+    <button type="submit">Consultar Cliente</button>
+</form>
+
+<h2>Alteração de Clientes</h2>
+<form id="alteraCliente" action="clientes" onsubmit="enviar('PUT', this); return false;" style="background-color: darkgrey; border: 2px solid black">
+    <label for="alteraId">Id:</label>
+    <input type="number" name="id" id="alteraId" placeholder="Informe o id" required>
+    <br>
+    <label for="alteraNome">Nome:</label>
+    <input type="text" name="nome" id="alteraNome" placeholder="Informe o nome" required>
+    <br>
+    <label for="alteraIdade">Idade:</label>
+    <input type="number" name="idade" id="alteraIdade" placeholder="Informe a sua idade" required>
+    <br>
+    <label for="alteraEmail">Email:</label>
+    <input type="text" name="email" id="alteraEmail" placeholder="Informe o email" required>
+    <br>
+    <label for="alteraSenha">Senha:</label>
+    <input type="password" name="senha" id="alteraSenha" placeholder="Informe a senha" required>
+    <br>
+    <label for="alteraTelefone">Telefone</label>
+    <input type="text" name="telefone" id="alteraTelefone" placeholder="Informe o telefone" required>
+    <br>
+    <label for="alteraCidade">Cidade</label>
+    <input type="text" name="cidade" id="alteraCidade" placeholder="Informe a cidade" required>
+    <br>
+    <label for="alteraCep">Cep</label>
+    <input type="text" name="cep" id="alteraCep" placeholder="Informe o cep" required>
+    <br>
+    <label for="alteraRua">Rua</label>
+    <input type="text" name="rua" id="alteraRua" placeholder="Informe a rua" required>
+    <br>
+    <label for="alteraNumero">Número</label>
+    <input type="text" name="numero" id="alteraNumero" placeholder="Informe o número" required>
+    <br>
+    <label for="alteraBairro">Bairro</label>
+    <input type="text" name="bairro" id="alteraBairro" placeholder="Informe o bairo" required>
+    <br>
+    <label for="alteraEstado">Estado</label>
+    <input type="text" name="estado" id="alteraEstado" placeholder="Informe o estado" required>
+    <br>
+    <label for="alteraComplemento">Complemento</label>
+    <input type="text" name="complemento" id="alteraComplemento" placeholder="Informe o complemento do endereço" required>
+    <br>
+    <button type="submit">Alterar Cliente</button>
+</form>
+
+<h2>Remoção de Clientes</h2>
+<form id="removeCliente" action="clientes" onsubmit="enviar('DELETE', this); return false;" style="background-color: darkgrey; border: 2px solid black">
+    <label for="removeId">Id:</label>
+    <input type="number" name="id" id="removeId" placeholder="Informe o id" required>
+    <br>
+    <button type="submit">Remover Cliente</button>
+</form>
+
+<script>
+    // Forms HTML só enviam GET e POST, então PUT e DELETE são enviados com fetch
+    function enviar(metodo, form) {
+        const params = new URLSearchParams(new FormData(form));
+        fetch(form.action + '?' + params, {method: metodo})
+            .then(resposta => resposta.text())
+            .then(html => {
+                document.open();
+                document.write(html);
+                document.close();
+            });
+    }
+</script>
+</body>
+</html>

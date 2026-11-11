@@ -7,7 +7,7 @@ public class SiteChefApp {
     // Configurações do Banco de Dados
     private static final String URL = "jdbc:mysql://localhost:3306/le_cheff";
     private static final String USER = "root";
-    private static final String PASSWORD = "admin";
+    private static final String PASSWORD = "root";
 
     public static void main(String[] args) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {

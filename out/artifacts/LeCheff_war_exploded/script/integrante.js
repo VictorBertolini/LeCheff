@@ -1,3 +1,28 @@
+var fotosIntegrantes = [
+    "imagens/Amanda.png",
+    "imagens/Bianca.png",
+    "imagens/Iury.png",
+    "imagens/Joaquim.png",
+    "imagens/Kaike.png",
+    "imagens/Lauro.png",
+    "imagens/Victor.png"
+];
+var indiceFotoAtual = -1;
+
+document.getElementById("foto").addEventListener("click", function () {
+    if (indiceFotoAtual === -1) {
+        return;
+    }
+
+    indiceFotoAtual = (indiceFotoAtual + 1) % fotosIntegrantes.length;
+    var alunoAtual = alunos[indiceFotoAtual];
+
+    document.getElementById("foto").src = fotosIntegrantes[indiceFotoAtual];
+    document.getElementById("nomeIntegrante").textContent = alunoAtual.nome;
+    document.getElementById("nomeVaga").textContent = alunoAtual.vaga;
+    document.getElementById("descricaoVaga").textContent = alunoAtual.descricao;
+});
+
 function buscarFoto() {
     var foto = document.getElementById("foto");
     var mensagem = document.getElementById("mensagem");
@@ -49,6 +74,8 @@ function buscarFoto() {
     }
 
     if (caminho !== "") {
+        indiceFotoAtual = fotosIntegrantes.indexOf(caminho);
+
         // Se o arquivo da imagem não for encontrado, mostra qual caminho falhou
         foto.onerror = function () {
             mensagem.textContent = "Não foi possível carregar a foto: " + caminho +

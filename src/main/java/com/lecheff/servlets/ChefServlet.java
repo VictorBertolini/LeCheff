@@ -14,8 +14,24 @@ import java.io.PrintWriter;
 @WebServlet("/chefs")
 public class ChefServlet extends HttpServlet {
 
+    private ChefDAO chefDAO;
+
+    // CICLO DE VIDA 1 - init(): roda uma única vez, quando o Tomcat cria o servlet
     @Override
-    public void init() throws ServletException {super.init();}
+    public void init() throws ServletException {
+        super.init();
+        chefDAO = new ChefDAO();
+        System.out.println("ChefServlet: init() - servlet iniciado");
+    }
+
+    // CICLO DE VIDA 2 - service(): roda a cada requisição e encaminha para doGet, doPost, doPut ou doDelete
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("ChefServlet: service() - requisição " + req.getMethod());
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        super.service(req, resp);
+    }
 
     // CADASTRAR
     @Override
@@ -24,7 +40,6 @@ public class ChefServlet extends HttpServlet {
         String senha = req.getParameter("senha");
 
         Chef chef = new Chef(email, senha);
-        ChefDAO chefDAO = new ChefDAO();
 
         String mensagem;
         if(chefDAO.inserirChef(chef)){mensagem = "Chef Cadastrado!";}
@@ -54,7 +69,6 @@ public class ChefServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
 
-        ChefDAO chefDAO = new ChefDAO();
         Chef chef = chefDAO.buscarChef(email);
 
         String corpo;
@@ -91,7 +105,6 @@ public class ChefServlet extends HttpServlet {
         String senha = req.getParameter("senha");
 
         Chef chef = new Chef(email, senha);
-        ChefDAO chefDAO = new ChefDAO();
 
         String mensagem;
         if(chefDAO.atualizarChef(chef)){mensagem = "Chef Alterado!";}
@@ -120,8 +133,6 @@ public class ChefServlet extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
 
-        ChefDAO chefDAO = new ChefDAO();
-
         String mensagem;
         if(chefDAO.removerChef(email)){mensagem = "Chef Removido!";}
         else{mensagem = "Chef não encontrado.";}
@@ -144,8 +155,11 @@ public class ChefServlet extends HttpServlet {
         out.close();
     }
 
+    // CICLO DE VIDA 3 - destroy(): roda uma única vez, quando o Tomcat desliga ou recarrega a aplicação
     @Override
     public void destroy() {
+        chefDAO = null;
+        System.out.println("ChefServlet: destroy() - servlet finalizado");
         super.destroy();
     }
 

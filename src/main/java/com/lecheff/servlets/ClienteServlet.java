@@ -13,8 +13,25 @@ import java.io.PrintWriter;
 
 @WebServlet("/clientes")
 public class ClienteServlet extends HttpServlet {
+
+    private ClienteDAO clienteDAO;
+
+    // CICLO DE VIDA 1 - init(): roda uma única vez, quando o Tomcat cria o servlet
     @Override
-    public void init() throws ServletException {super.init();}
+    public void init() throws ServletException {
+        super.init();
+        clienteDAO = new ClienteDAO();
+        System.out.println("ClienteServlet: init() - servlet iniciado");
+    }
+
+    // CICLO DE VIDA 2 - service(): roda a cada requisição e encaminha para doGet, doPost, doPut ou doDelete
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("ClienteServlet: service() - requisição " + req.getMethod());
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        super.service(req, resp);
+    }
 
     // CADASTRAR
     @Override
@@ -35,7 +52,6 @@ public class ClienteServlet extends HttpServlet {
             String complemento = req.getParameter("complemento");
 
             Cliente cliente = new Cliente(nome, idade, email, senha, telefone, cidade, cep, rua, numero, bairro, estado, complemento);
-            ClienteDAO clienteDAO = new ClienteDAO();
 
             if(clienteDAO.inserirCliente(cliente)) {mensagem = "Cliente Cadastrado!";}
             else{mensagem = "Erro ao cadastrar o cliente.";}
@@ -56,7 +72,6 @@ public class ClienteServlet extends HttpServlet {
                 "</html>";
 
         resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
         PrintWriter out = resp.getWriter();
         out.print(html);
         out.close();
@@ -70,7 +85,6 @@ public class ClienteServlet extends HttpServlet {
         try {
             int id = Integer.parseInt(req.getParameter("id"));
 
-            ClienteDAO clienteDAO = new ClienteDAO();
             Cliente cliente = clienteDAO.buscarCliente(id);
 
             if (cliente != null) {
@@ -133,7 +147,6 @@ public class ClienteServlet extends HttpServlet {
             String complemento = req.getParameter("complemento");
 
             Cliente cliente = new Cliente(id, nome, idade, email, senha, telefone, cidade, cep, rua, numero, bairro, estado, complemento);
-            ClienteDAO clienteDAO = new ClienteDAO();
 
             if(clienteDAO.atualizarCliente(cliente)){mensagem = "Cliente Alterado!";}
             else{mensagem = "Cliente não encontrado.";}
@@ -154,7 +167,6 @@ public class ClienteServlet extends HttpServlet {
                 "</html>";
 
         resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
         PrintWriter out = resp.getWriter();
         out.print(html);
         out.close();
@@ -166,8 +178,6 @@ public class ClienteServlet extends HttpServlet {
         String mensagem;
         try {
             int id = Integer.parseInt(req.getParameter("id"));
-
-            ClienteDAO clienteDAO = new ClienteDAO();
 
             if(clienteDAO.removerCliente(id)){mensagem = "Cliente Removido!";}
             else{mensagem = "Cliente não encontrado.";}
@@ -188,14 +198,16 @@ public class ClienteServlet extends HttpServlet {
                 "</html>";
 
         resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
         PrintWriter out = resp.getWriter();
         out.print(html);
         out.close();
     }
 
+    // CICLO DE VIDA 3 - destroy(): roda uma única vez, quando o Tomcat desliga ou recarrega a aplicação
     @Override
     public void destroy() {
+        clienteDAO = null;
+        System.out.println("ClienteServlet: destroy() - servlet finalizado");
         super.destroy();
     }
 }

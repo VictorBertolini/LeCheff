@@ -14,8 +14,24 @@ import java.io.PrintWriter;
 @WebServlet("/pratos")
 public class PratoServlet extends HttpServlet {
 
+    private PratoDAO pratoDAO;
+
+    // CICLO DE VIDA 1 - init(): roda uma única vez, quando o Tomcat cria o servlet
     @Override
-    public void init() throws ServletException {super.init();}
+    public void init() throws ServletException {
+        super.init();
+        pratoDAO = new PratoDAO();
+        System.out.println("PratoServlet: init() - servlet iniciado");
+    }
+
+    // CICLO DE VIDA 2 - service(): roda a cada requisição e encaminha para doGet, doPost, doPut ou doDelete
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("PratoServlet: service() - requisição " + req.getMethod());
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        super.service(req, resp);
+    }
 
     // CADASTRAR
     @Override
@@ -25,7 +41,6 @@ public class PratoServlet extends HttpServlet {
         String categoriaPrato  = req.getParameter("categoriaPrato");
 
         Prato prato = new Prato(nomePrato, descricaoPrato, categoriaPrato);
-        PratoDAO pratoDAO = new PratoDAO();
 
         String mensagem;
         if(pratoDAO.inserirPrato(prato)){mensagem = "Prato Cadastrado!";}
@@ -46,7 +61,6 @@ public class PratoServlet extends HttpServlet {
                         "</html>";
 
         resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
         PrintWriter out = resp.getWriter();
         out.print(html);
         out.close();
@@ -60,7 +74,6 @@ public class PratoServlet extends HttpServlet {
         try {
             int id = Integer.parseInt(req.getParameter("id"));
 
-            PratoDAO pratoDAO = new PratoDAO();
             Prato prato = pratoDAO.buscarPrato(id);
 
             if (prato != null) {
@@ -89,7 +102,6 @@ public class PratoServlet extends HttpServlet {
                         "</html>";
 
         resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
         PrintWriter out = resp.getWriter();
         out.print(html);
         out.close();
@@ -106,7 +118,6 @@ public class PratoServlet extends HttpServlet {
             String categoriaPrato  = req.getParameter("categoriaPrato");
 
             Prato prato = new Prato(id, nomePrato, descricaoPrato, categoriaPrato);
-            PratoDAO pratoDAO = new PratoDAO();
 
             if(pratoDAO.atualizarPrato(prato)){mensagem = "Prato Alterado!";}
             else{
@@ -129,7 +140,6 @@ public class PratoServlet extends HttpServlet {
                         "</html>";
 
         resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
         PrintWriter out = resp.getWriter();
         out.print(html);
         out.close();
@@ -141,8 +151,6 @@ public class PratoServlet extends HttpServlet {
         String mensagem;
         try {
             int id = Integer.parseInt(req.getParameter("id"));
-
-            PratoDAO pratoDAO = new PratoDAO();
 
             if(pratoDAO.removerPrato(id)){mensagem= "Prato Removido!";}
             else{
@@ -165,14 +173,16 @@ public class PratoServlet extends HttpServlet {
                         "</html>";
 
         resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
         PrintWriter out = resp.getWriter();
         out.print(html);
         out.close();
     }
 
+    // CICLO DE VIDA 3 - destroy(): roda uma única vez, quando o Tomcat desliga ou recarrega a aplicação
     @Override
     public void destroy() {
+        pratoDAO = null;
+        System.out.println("PratoServlet: destroy() - servlet finalizado");
         super.destroy();
     }
 

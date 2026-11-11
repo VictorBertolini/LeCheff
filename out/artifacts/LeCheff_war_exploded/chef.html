@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Tela do Chef - Le Chef</title>
+</head>
+<body>
+<h1>Tela do Chef - Le Chef</h1>
+<h2>Cadastro do Chef</h2>
+<form id="cadastroChef" action="chefs" method="post" style="background-color: darkgrey; border: 2px solid black">
+    <label for="email">Email:</label>
+    <input type="text" name="email" id="email" placeholder="Informe o email" required>
+    <br>
+    <label for="senha">Senha:</label>
+    <input type="text" name="senha" id="senha" placeholder="Informe a senha" required>
+    <br>
+    <button type="submit">Cadastrar Chef</button>
+</form>
+
+<h2>Consulta do Chef</h2>
+<form id="consultaChef" action="chefs" method="get" style="background-color: darkgrey; border: 2px solid black">
+    <label for="consultaEmail">Email:</label>
+    <input type="text" name="email" id="consultaEmail" placeholder="Informe o email" required>
+    <br>
+    <button type="submit">Consultar Chef</button>
+</form>
+
+<h2>Alteração do Chef</h2>
+<form id="alteraChef" action="chefs" onsubmit="enviar('PUT', this); return false;" style="background-color: darkgrey; border: 2px solid black">
+    <label for="alteraEmail">Email:</label>
+    <input type="text" name="email" id="alteraEmail" placeholder="Informe o email" required>
+    <br>
+    <label for="alteraSenha">Nova senha:</label>
+    <input type="text" name="senha" id="alteraSenha" placeholder="Informe a nova senha" required>
+    <br>
+    <button type="submit">Alterar Chef</button>
+</form>
+
+<h2>Remoção do Chef</h2>
+<form id="removeChef" action="chefs" onsubmit="enviar('DELETE', this); return false;" style="background-color: darkgrey; border: 2px solid black">
+    <label for="removeEmail">Email:</label>
+    <input type="text" name="email" id="removeEmail" placeholder="Informe o email" required>
+    <br>
+    <button type="submit">Remover Chef</button>
+</form>
+
+<script>
+    // Forms HTML só enviam GET e POST, então PUT e DELETE são enviados com fetch
+    function enviar(metodo, form) {
+        const params = new URLSearchParams(new FormData(form));
+        fetch(form.action + '?' + params, {method: metodo})
+            .then(resposta => resposta.text())
+            .then(html => {
+                document.open();
+                document.write(html);
+                document.close();
+            });
+    }
+</script>
+</body>
+</html>
