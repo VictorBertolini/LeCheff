@@ -1,4 +1,4 @@
-Integrantes:
+## Integrantes:
 - Amanda Gomes
 - Bianca Ribeiro
 - Iury Hattori
