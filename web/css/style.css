@@ -1,0 +1,38 @@
+/* INDEX */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#lecheff__index-header {
+    display: flex;
+    gap: 90px;
+    padding: 15px;
+    border-bottom: 1px solid #B0B0B0;
+}
+
+#lecheff__item-header {
+    text-decoration: none;
+    color: black;
+    padding: 7px;
+}
+
+#lecheff__h1 {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#lecheff__button-section {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.lecheff__button {
+    padding: 10px 30px;
+    border: 1px solid black;
+    text-decoration: none;
+    color: black;
+}
