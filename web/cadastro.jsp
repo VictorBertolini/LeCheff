@@ -20,7 +20,7 @@
                 <input type="text" name="nome" id="nome" placeholder="Informe o nome" required autofocus>
 
                 <label for="idade">Idade:</label>
-                <input type="number" name="idade" id="idade" placeholder="Informe a idade" min="0">
+                <input type="number" name="idade" id="idade" placeholder="Informe a idade" min="0" required>
 
                 <label for="email">Email:</label>
                 <input type="email" name="email" id="email" placeholder="Informe o email" required>
