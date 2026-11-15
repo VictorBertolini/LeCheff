@@ -57,15 +57,15 @@ public class ClienteDAO extends BaseDAO {
         }
     }
 
-    public Cliente buscarCliente(int id){
+    public Cliente buscarCliente(String email){
         try (Connection conn = getConnection()) {
 
             // CONSULTAR
             System.out.println("--- CONSULTANDO CLIENTE ---");
 
-            String selectCliente = "SELECT id, nome, idade, email, senha, telefone FROM Cliente WHERE id = ?";
+            String selectCliente = "SELECT id, nome, idade, email, senha, telefone FROM Cliente WHERE email = ?";
             try (PreparedStatement stmt = conn.prepareStatement(selectCliente)) {
-                stmt.setInt(1, id);
+                stmt.setString(1, email);
 
                 ResultSet rs = stmt.executeQuery();
                 if (rs.next()) {

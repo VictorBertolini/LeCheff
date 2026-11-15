@@ -78,9 +78,9 @@ public class ClienteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String corpo;
         try {
-            int id = Integer.parseInt(req.getParameter("id"));
+            String email = req.getParameter("email");
 
-            Cliente cliente = clienteDAO.buscarCliente(id);
+            Cliente cliente = clienteDAO.buscarCliente(email);
 
             if (cliente != null) {
                 corpo = "  <h1>Cliente encontrado</h1>\n" +
