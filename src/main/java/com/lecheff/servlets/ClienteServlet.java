@@ -35,7 +35,7 @@ public class ClienteServlet extends HttpServlet {
 
     // CADASTRAR
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String mensagem;
         try {
             String nome = req.getParameter("nome");
@@ -43,18 +43,14 @@ public class ClienteServlet extends HttpServlet {
             String email = req.getParameter("email");
             String senha = req.getParameter("senha");
             String telefone = req.getParameter("telefone");
-            String cidade = req.getParameter("cidade");
-            String cep = req.getParameter("cep");
-            String rua = req.getParameter("rua");
-            String numero = req.getParameter("numero");
-            String bairro = req.getParameter("bairro");
-            String estado = req.getParameter("estado");
-            String complemento = req.getParameter("complemento");
 
-            Cliente cliente = new Cliente(nome, idade, email, senha, telefone, cidade, cep, rua, numero, bairro, estado, complemento);
+            Cliente cliente = new Cliente(nome, idade, email, senha, telefone);
 
-            if(clienteDAO.inserirCliente(cliente)) {mensagem = "Cliente Cadastrado!";}
-            else{mensagem = "Erro ao cadastrar o cliente.";}
+            if(clienteDAO.inserirCliente(cliente))
+                mensagem = "Cliente Cadastrado!";
+            else
+                mensagem = "Erro ao cadastrar o cliente.";
+
         } catch (NumberFormatException e) {
             mensagem = "Idade inválida.";
         }
@@ -75,12 +71,11 @@ public class ClienteServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         out.print(html);
         out.close();
-
     }
 
     // CONSULTAR
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String corpo;
         try {
             int id = Integer.parseInt(req.getParameter("id"));
@@ -94,14 +89,7 @@ public class ClienteServlet extends HttpServlet {
                         "  <p>Idade: " + cliente.getIdade() + "</p>\n" +
                         "  <p>Email: " + cliente.getEmail() + "</p>\n" +
                         "  <p>Senha: " + cliente.getSenha() + "</p>\n" +
-                        "  <p>Telefone: " + cliente.getTelefone() + "</p>\n" +
-                        "  <p>Cidade: " + cliente.getCidade() + "</p>\n" +
-                        "  <p>Cep: " + cliente.getCep() + "</p>\n" +
-                        "  <p>Rua: " + cliente.getRua() + "</p>\n" +
-                        "  <p>Número: " + cliente.getNumero() + "</p>\n" +
-                        "  <p>Bairro: " + cliente.getBairro() + "</p>\n" +
-                        "  <p>Estado: " + cliente.getEstado() + "</p>\n" +
-                        "  <p>Complemento: " + cliente.getComplemento() + "</p>\n";
+                        "  <p>Telefone: " + cliente.getTelefone() + "</p>\n";
             } else {
                 corpo = "  <h1>Cliente não encontrado.</h1>\n";
             }
@@ -129,7 +117,7 @@ public class ClienteServlet extends HttpServlet {
 
     // ALTERAR
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String mensagem;
         try {
             int id = Integer.parseInt(req.getParameter("id"));
@@ -138,18 +126,14 @@ public class ClienteServlet extends HttpServlet {
             String email = req.getParameter("email");
             String senha = req.getParameter("senha");
             String telefone = req.getParameter("telefone");
-            String cidade = req.getParameter("cidade");
-            String cep = req.getParameter("cep");
-            String rua = req.getParameter("rua");
-            String numero = req.getParameter("numero");
-            String bairro = req.getParameter("bairro");
-            String estado = req.getParameter("estado");
-            String complemento = req.getParameter("complemento");
 
-            Cliente cliente = new Cliente(id, nome, idade, email, senha, telefone, cidade, cep, rua, numero, bairro, estado, complemento);
+            Cliente cliente = new Cliente(id, nome, idade, email, senha, telefone);
 
-            if(clienteDAO.atualizarCliente(cliente)){mensagem = "Cliente Alterado!";}
-            else{mensagem = "Cliente não encontrado.";}
+            if(clienteDAO.atualizarCliente(cliente))
+                mensagem = "Cliente Alterado!";
+            else
+                mensagem = "Cliente não encontrado.";
+
         } catch (NumberFormatException e) {
             mensagem = "Id ou idade inválidos.";
         }
@@ -174,13 +158,16 @@ public class ClienteServlet extends HttpServlet {
 
     // REMOVER
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String mensagem;
         try {
             int id = Integer.parseInt(req.getParameter("id"));
 
-            if(clienteDAO.removerCliente(id)){mensagem = "Cliente Removido!";}
-            else{mensagem = "Cliente não encontrado.";}
+            if(clienteDAO.removerCliente(id))
+                mensagem = "Cliente Removido!";
+            else
+                mensagem = "Cliente não encontrado.";
+
         } catch (NumberFormatException e) {
             mensagem = "Id inválido.";
         }
