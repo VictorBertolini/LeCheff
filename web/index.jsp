@@ -19,5 +19,7 @@
         <a href="cadastro.jsp" class="lecheff__button">Cadastrar</a>
     </section>
 
+    <%@ include file="components/footer.jsp" %>
+
 </body>
 </html>

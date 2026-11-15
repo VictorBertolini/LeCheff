@@ -35,5 +35,6 @@
             </form>
         </fieldset>
     </section>
+    <%@ include file="components/footer.jsp" %>
 </body>
 </html>
