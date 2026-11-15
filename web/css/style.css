@@ -82,3 +82,23 @@ body {
 .lecheff__form label {
     margin-top: 10px;
 }
+
+/* INTEGRANTES */
+
+#lecheff__integrantes {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px;
+}
+
+.lecheff__integrante {
+    width: 200px;
+    text-align: center;
+}
+
+.lecheff__integrante img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover; /* recorta a foto sem distorcer */
+}
