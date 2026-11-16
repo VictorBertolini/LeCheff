@@ -42,25 +42,23 @@ public class LoginServlet extends HttpServlet {
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
 
-        // 1º - tenta como cheff
+        // começa como inválido: só muda se encontrar cheff ou cliente com a senha certa
+        String resultado = "login_invalido";
+
         Cheff cheff = cheffDAO.buscarChef(email);
-        if (cheff != null && cheff.getSenha().equals(senha)) {
-            req.getRequestDispatcher("area_cheff.jsp").forward(req, resp);
-            return;
-        }
+        Cliente cliente = clienteDAO.buscarCliente(email);
+
+        // 1º - tenta como cheff
+        if (cheff != null && cheff.getSenha().equals(senha))
+            resultado = "login_cheff";
 
         // 2º - tenta como cliente
-        Cliente cliente = clienteDAO.buscarCliente(email);
-        if (cliente != null && cliente.getSenha().equals(senha)) {
-            req.getRequestDispatcher("area_cliente.jsp").forward(req, resp);
-            return;
-        }
+        else if (cliente != null && cliente.getSenha().equals(senha))
+            resultado = "login_cliente";
 
-        System.out.println("Cliente: " + cliente.getNome() + " " + cliente.getEmail() + " " + cliente.getSenha());
-
-        // 3º - não achou ninguém: volta para o login com mensagem de erro
-        req.setAttribute("erro", "Email ou senha inválidos.");
-        req.getRequestDispatcher("login.jsp").forward(req, resp);
+        // a página de destino é escolhida no fluxo_login_cadastro.jsp com <jsp:forward>
+        req.setAttribute("resultado", resultado);
+        req.getRequestDispatcher("fluxo_login_cadastro.jsp").forward(req, resp);
     }
 
     // CICLO DE VIDA 3 - destroy(): roda uma única vez, quando o Tomcat desliga ou recarrega a aplicação

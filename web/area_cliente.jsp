@@ -9,9 +9,9 @@
 
     <jsp:include page="/components/header.jsp" />
 
-    <h1 id="lecheff__h1">Le Cheff</h1>
+    <h1 id="lecheff__h1">Ambiente do Cliente</h1>
 
-    <h2>Cliente Logado!</h2>
+    <h2>Seus pedidos:</h2>
 
     <jsp:include page="/components/footer.jsp" />
 </body>

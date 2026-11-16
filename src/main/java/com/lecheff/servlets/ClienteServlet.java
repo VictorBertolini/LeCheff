@@ -42,18 +42,23 @@ public class ClienteServlet extends HttpServlet {
         String senha = req.getParameter("senha");
         String telefone = req.getParameter("telefone");
 
-        // email já cadastrado avisa que o usuário deve fazer login
+        String resultado;
+
+        // email já cadastrado: avisa que o usuário deve fazer login
         if (clienteDAO.buscarCliente(email) != null) {
-            req.getRequestDispatcher("erro/email_cadastrado.jsp").forward(req, resp);
-            return;
+            resultado = "email_cadastrado";
+        } else {
+            Cliente cliente = new Cliente(nome, idade, email, senha, telefone);
+
+            if (clienteDAO.inserirCliente(cliente))
+                resultado = "login_cliente";
+            else
+                resultado = "erro";
         }
 
-        Cliente cliente = new Cliente(nome, idade, email, senha, telefone);
-
-        if(clienteDAO.inserirCliente(cliente))
-            req.getRequestDispatcher("area_cliente.jsp").forward(req, resp);
-        else
-            req.getRequestDispatcher("erro/erro_cadastro.jsp").forward(req, resp);
+        // a página de destino é escolhida no fluxo_login_cadastro.jsp com <jsp:forward>
+        req.setAttribute("resultado", resultado);
+        req.getRequestDispatcher("fluxo_login_cadastro.jsp").forward(req, resp);
     }
 
     // CONSULTAR
