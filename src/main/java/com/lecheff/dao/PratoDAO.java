@@ -8,24 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PratoDAO {
-
-    // Configurações do Banco de Dados
-    private static final String URL = "jdbc:mysql://localhost:3306/le_cheff";
-    private static final String USER = "root";
-    private static final String PASSWORD = "admin";
-
-    // Carrega o driver do MySQL (no Tomcat ele não é registrado sozinho)
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+public class PratoDAO extends BaseDAO {
 
     public boolean inserirPrato(Prato prato){
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = getConnection()) {
             System.out.println("Conexão com o banco de dados estabelecida com sucesso!\n");
 
             // CADASTRAR
@@ -51,7 +37,7 @@ public class PratoDAO {
     }
 
     public boolean atualizarPrato(Prato prato){
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = getConnection()) {
 
             // ALTERAR
             System.out.println("--- ALTERANDO PRATO ---");
@@ -76,7 +62,7 @@ public class PratoDAO {
     }
 
     public Prato buscarPrato(int id){
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = getConnection()) {
 
             // CONSULTAR
             System.out.println("--- CONSULTANDO PRATO ---");
@@ -100,7 +86,7 @@ public class PratoDAO {
     }
 
     public boolean removerPrato(int id){
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = getConnection()) {
 
             // REMOVER
             System.out.println("--- REMOVENDO PRATO ---");

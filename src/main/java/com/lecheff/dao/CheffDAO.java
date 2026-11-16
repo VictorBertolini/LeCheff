@@ -4,24 +4,10 @@ import com.lecheff.models.Cheff;
 
 import java.sql.*;
 
-public class CheffDAO {
-
-    // Configurações do Banco de Dados
-    private static final String URL = "jdbc:mysql://localhost:3306/le_cheff";
-    private static final String USER = "root";
-    private static final String PASSWORD = "admin";
-
-    // Carrega o driver do MySQL (no Tomcat ele não é registrado sozinho)
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+public class CheffDAO extends BaseDAO {
 
     public boolean inserirChef(Cheff cheff){
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = getConnection()) {
             System.out.println("Conexão com o banco de dados estabelecida com sucesso!\n");
 
             // CADASTRAR-
@@ -46,7 +32,7 @@ public class CheffDAO {
     }
 
     public boolean atualizarChef(Cheff cheff){
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = getConnection()) {
 
             // ALTERAR (o email é a chave, então só a senha muda)
             System.out.println("--- ALTERANDO CHEF ---");
@@ -69,7 +55,7 @@ public class CheffDAO {
     }
 
     public Cheff buscarChef(String email){
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = getConnection()) {
 
             // CONSULTAR
             System.out.println("--- CONSULTANDO CHEF ---");
@@ -93,7 +79,7 @@ public class CheffDAO {
     }
 
     public boolean removerChef(String email){
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = getConnection()) {
 
             // REMOVER
             System.out.println("--- REMOVENDO CHEF ---");

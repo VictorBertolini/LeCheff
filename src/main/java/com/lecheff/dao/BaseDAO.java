@@ -20,7 +20,7 @@ public abstract class BaseDAO {
         }
     }
 
-    // Abre uma conexão com o banco (usar sempre dentro de um try-with-resources)
+    // Abre uma conexão com o banco
     protected Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
