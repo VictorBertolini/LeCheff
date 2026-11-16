@@ -10,13 +10,13 @@
 </head>
 <body>
 
-    <%@ include file="components/header.jsp" %>
+    <jsp:include page="/components/header.jsp" />
 
     <h1 id="lecheff__h1">Integrantes</h1>
 
     <section id="lecheff__integrantes"></section>
 
-    <%@ include file="components/footer.jsp" %>
+    <jsp:include page="/components/footer.jsp" />
 
     <script src="js/integrantes.js"></script>
 </body>

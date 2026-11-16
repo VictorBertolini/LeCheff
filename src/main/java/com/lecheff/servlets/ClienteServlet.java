@@ -35,84 +35,41 @@ public class ClienteServlet extends HttpServlet {
 
     // CADASTRAR
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String mensagem;
-        try {
-            String nome = req.getParameter("nome");
-            int idade = Integer.parseInt(req.getParameter("idade"));
-            String email = req.getParameter("email");
-            String senha = req.getParameter("senha");
-            String telefone = req.getParameter("telefone");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        String nome = req.getParameter("nome");
+        int idade = Integer.parseInt(req.getParameter("idade"));
+        String email = req.getParameter("email");
+        String senha = req.getParameter("senha");
+        String telefone = req.getParameter("telefone");
 
-            Cliente cliente = new Cliente(nome, idade, email, senha, telefone);
-
-            if(clienteDAO.inserirCliente(cliente))
-                mensagem = "Cliente Cadastrado!";
-            else
-                mensagem = "Erro ao cadastrar o cliente.";
-
-        } catch (NumberFormatException e) {
-            mensagem = "Idade inválida.";
+        // email já cadastrado avisa que o usuário deve fazer login
+        if (clienteDAO.buscarCliente(email) != null) {
+            req.getRequestDispatcher("erro/email_cadastrado.jsp").forward(req, resp);
+            return;
         }
 
-        String html =
-                "<html>\n" +
-                "<head>\n" +
-                "  <meta charset=\"UTF-8\">\n" +
-                "  <title>Cadastro de Cliente</title>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "  <h1>" + mensagem + "</h1>\n" +
-                "  <a href=\"cliente.html\">Voltar</a>\n" +
-                "</body>\n" +
-                "</html>";
+        Cliente cliente = new Cliente(nome, idade, email, senha, telefone);
 
-        resp.setContentType("text/html");
-        PrintWriter out = resp.getWriter();
-        out.print(html);
-        out.close();
+        if(clienteDAO.inserirCliente(cliente))
+            req.getRequestDispatcher("area_cliente.jsp").forward(req, resp);
+        else
+            req.getRequestDispatcher("erro/erro_cadastro.jsp").forward(req, resp);
     }
 
     // CONSULTAR
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String corpo;
-        try {
-            String email = req.getParameter("email");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        String email = req.getParameter("email");
 
-            Cliente cliente = clienteDAO.buscarCliente(email);
+        Cliente cliente = clienteDAO.buscarCliente(email);
 
-            if (cliente != null) {
-                corpo = "  <h1>Cliente encontrado</h1>\n" +
-                        "  <p>Id: " + cliente.getId() + "</p>\n" +
-                        "  <p>Nome: " + cliente.getNome() + "</p>\n" +
-                        "  <p>Idade: " + cliente.getIdade() + "</p>\n" +
-                        "  <p>Email: " + cliente.getEmail() + "</p>\n" +
-                        "  <p>Senha: " + cliente.getSenha() + "</p>\n" +
-                        "  <p>Telefone: " + cliente.getTelefone() + "</p>\n";
-            } else {
-                corpo = "  <h1>Cliente não encontrado.</h1>\n";
-            }
-        } catch (NumberFormatException e) {
-            corpo = "  <h1>Id inválido.</h1>\n";
+        if (cliente != null) {
+            // manda o cliente encontrado para a JSP mostrar
+            req.setAttribute("cliente", cliente);
+//            req.getRequestDispatcher("consulta_cliente.jsp").forward(req, resp);
+        } else {
+            req.getRequestDispatcher("erro/cliente_nao_encontrado.jsp").forward(req, resp);
         }
-
-        String html =
-                "<html>\n" +
-                "<head>\n" +
-                "  <meta charset=\"UTF-8\">\n" +
-                "  <title>Consulta de Cliente</title>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                corpo +
-                "  <a href=\"cliente.html\">Voltar</a>\n" +
-                "</body>\n" +
-                "</html>";
-
-        resp.setContentType("text/html");
-        PrintWriter out = resp.getWriter();
-        out.print(html);
-        out.close();
     }
 
     // ALTERAR

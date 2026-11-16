@@ -8,7 +8,7 @@
     <title>Le Cheff</title>
 </head>
 <body>
-    <%@ include file="components/header.jsp" %>
+    <jsp:include page="/components/header.jsp" />
 
     <h1 id="lecheff__h1">Le Cheff</h1>
 
@@ -35,6 +35,6 @@
             </form>
         </fieldset>
     </section>
-    <%@ include file="components/footer.jsp" %>
+    <jsp:include page="/components/footer.jsp" />
 </body>
 </html>
