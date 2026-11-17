@@ -29,6 +29,13 @@ body {
     text-align: center;
 }
 
+.lecheff__item-header-sair {
+    margin-left: auto;
+    text-decoration: none;
+    color: black;
+    padding: 7px;
+}
+
 /* FOOTER */
 .lecheff__footer {
     margin-top: auto;
