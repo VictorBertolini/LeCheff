@@ -56,6 +56,11 @@ public class ClienteServlet extends HttpServlet {
                 resultado = "erro";
         }
 
+        // guarda quem está logado
+        if (resultado.equals("login_cliente")) {
+            req.getSession().setAttribute("email", email);
+        }
+
         // a página de destino é escolhida no fluxo_login_cadastro.jsp com <jsp:forward>
         req.setAttribute("resultado", resultado);
         req.getRequestDispatcher("fluxo_login_cadastro.jsp").forward(req, resp);
