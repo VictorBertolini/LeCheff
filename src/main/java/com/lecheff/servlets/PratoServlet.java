@@ -56,7 +56,7 @@ public class PratoServlet extends HttpServlet {
                         "</head>\n" +
                         "<body>\n" +
                         "  <h1>" + mensagem + "</h1>\n" +
-                        "  <a href=\"prato.html\">Voltar</a>\n" +
+                        "  <a href=\"area_cheff.jsp\">Voltar</a>\n" +
                         "</body>\n" +
                         "</html>";
 
@@ -97,7 +97,7 @@ public class PratoServlet extends HttpServlet {
                         "</head>\n" +
                         "<body>\n" +
                         corpo +
-                        "  <a href=\"prato.html\">Voltar</a>\n" +
+                        "  <a href=\"area_cheff.jsp\">Voltar</a>\n" +
                         "</body>\n" +
                         "</html>";
 
@@ -135,7 +135,7 @@ public class PratoServlet extends HttpServlet {
                         "</head>\n" +
                         "<body>\n" +
                         "  <h1>" + mensagem + "</h1>\n" +
-                        "  <a href=\"prato.html\">Voltar</a>\n" +
+                        "  <a href=\"area_cheff.jsp\">Voltar</a>\n" +
                         "</body>\n" +
                         "</html>";
 
@@ -168,7 +168,7 @@ public class PratoServlet extends HttpServlet {
                         "</head>\n" +
                         "<body>\n" +
                         "  <h1>" + mensagem + "</h1>\n" +
-                        "  <a href=\"prato.html\">Voltar</a>\n" +
+                        "  <a href=\"area_cheff.jsp\">Voltar</a>\n" +
                         "</body>\n" +
                         "</html>";
 
