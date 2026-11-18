@@ -3,4 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_1.xsd"
          version="6.1">
+
+    <servlet>
+        <servlet-name>ArquivoServlet</servlet-name>
+        <servlet-class>com.lecheff.servlets.ArquivoServlet</servlet-class>
+        <multipart-config>
+            <file-size-threshold>4096</file-size-threshold>
+            <max-file-size>10485760</max-file-size>
+            <max-request-size>26214400</max-request-size>
+        </multipart-config>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ArquivoServlet</servlet-name>
+        <url-pattern>/arquivos</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

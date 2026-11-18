@@ -12,6 +12,9 @@
     <h1 id="lecheff__h1">Ambiente do Cliente</h1>
 
     <h2>Seus pedidos:</h2>
+     <jsp:include page="/components/upload_contexto.jsp">
+            <jsp:param name="contexto" value="cliente" />
+        </jsp:include>
 
     <jsp:include page="/components/footer.jsp" />
 </body>
